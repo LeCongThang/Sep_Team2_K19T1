@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sep_team2;
+package Presentation;
+import Bus.Tags_Bus;
+import Entities.Tags;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,8 +17,25 @@ public class JFrameMain extends javax.swing.JFrame {
     /**
      * Creates new form JFrameMain
      */
+    Tags s = new Tags();
+    Tags_Bus bus = new Tags_Bus();
     public JFrameMain() {
         initComponents();
+        LoadData();
+        setLocationRelativeTo(null);
+    }
+    void LoadData()
+    {
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("Tags Name");
+        dtm.addColumn("Description");
+        for(Tags t : bus.findall("lecongthang454@gmail.com"))
+        {
+            dtm.addRow(new Object[]{t.getTagName(),t.getDescription()});
+        }
+        tblTest.setModel(dtm);
+        tblTest.repaint();
+        tblTest.validate();
     }
 
     /**
@@ -27,17 +47,39 @@ public class JFrameMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTest = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tblTest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblTest);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +121,7 @@ public class JFrameMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblTest;
     // End of variables declaration//GEN-END:variables
 }
